@@ -10,12 +10,11 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function (){
+// Eager load all data related to employer
+$jobs = Jobs::with('employer')->simplePaginate(3);
 
-/*    $jobs = Jobs::all();
-    dd($jobs->only('id'));
-*/
     return view('jobs', [
-        'jobs' => Jobs::all()
+        'jobs' => $jobs
     ]);
 });
 

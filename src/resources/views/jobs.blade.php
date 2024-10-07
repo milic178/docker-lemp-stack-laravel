@@ -2,12 +2,19 @@
     <x-slot:heading>Available jobs</x-slot:heading>
     <h1>Currently listed</h1>
 
-    @foreach($jobs as $job)
-        <li class="mt-1">
-            <a href="/jobs/{{$job['id']}}" class="text-blue-500 hover:underline">
-            <strong>{{ $job['title'] }}:</strong> Pays ${{ $job['salary'] }}: per year
+    <div class="space-y-4">
+        @foreach($jobs as $job)
+            <a href="/jobs/{{$job['id']}}" class="block px-4 py-6 border border-gray-200 rounded-lg">
+                <div class="font-bold text-blue-500 text-sm">{{ $job->employer->name }}</div>
+
+                <div>
+                    <strong>{{ $job['title'] }}:</strong> Pays ${{ $job['salary'] }}: per year
+                </div>
             </a>
-        </li class="mt-1">
-    @endforeach
+        @endforeach
+
+        <div> {{ $jobs->links() }}
+        </div>
+    </div>
 </x-layout>
 

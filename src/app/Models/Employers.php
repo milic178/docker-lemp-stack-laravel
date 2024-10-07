@@ -10,6 +10,6 @@ class Employers extends Model
     use HasFactory;
 
     public function jobs(){
-        return $this->hasMany(Jobs::class);
+        return $this->hasMany(Jobs::class, 'employer_id');  // Correct way to specify foreign key
     }
 }

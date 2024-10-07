@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Employers;
+use App\Models\Jobs;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,6 +26,7 @@ class JobsFactory extends Factory
                 // Multiply by 10,000 and round to the nearest multiple of 10,000
                 return round($x * 100) * 100; // This ensures the bias towards multiples of 10,000
             })
+
             //
         ];
     }

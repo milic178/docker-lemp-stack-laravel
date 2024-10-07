@@ -14,10 +14,11 @@ class Jobs extends Model
     protected $fillable = ['title', 'salary'];
 
     public function employer(){
-        return $this->belongsTo(Employers::class);
+        // Ensure 'employer_id' is used
+        return $this->belongsTo(Employers::class,  'employer_id');
     }
 
     public function tags(){
-        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
+        return $this->belongsToMany(Tag::class, table:'job_tag', foreignPivotKey: 'job_listing_id');
     }
 }
