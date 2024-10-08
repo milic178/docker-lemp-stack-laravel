@@ -1,80 +1,31 @@
 <?php
 
+use App\Http\Controllers\JobsController;
 use Illuminate\Support\Facades\Route;
-use \Illuminate\Support\Arr;
-use App\Models\Jobs;
 
-Route::get('/', function () {
-    return view('home', [
-        'greeting' => 'Hello World!']);
-});
+Route::view('/', 'home', ['greeting' => 'Hello World!']);
+Route::view('/contact', 'contact');
 
-//index
-Route::get('/jobs', function () {
-// Eager load all data related to employer
-    $jobs = Jobs::with('employer')->latest()->simplePaginate(3);
-    return view('jobs.index', [
-        'jobs' => $jobs
-    ]);
+//possible to group routes in controller group (ex: JobsController)
+/*Route::controller(JobsController::class)->group(function () {
+    Route::get('/jobs','index');
+    Route::get('/jobs/create','create');
+    Route::get('/jobs/{job}','show');
+    Route::post('/jobs','store');
+    Route::get('/jobs/{job}/edit','edit');
+    Route::patch('/jobs/{job}','update');
+    Route::delete('/jobs/{job}','destroy');
 });
+*/
+Route::resource('jobs', JobsController::class);
 
-//Store job
-Route::post('/jobs', function () {
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required', 'min:5'],
-    ]);
-
-    //todo validation
-    Jobs::create([
-        'title' =>request('title'),
-        'salary' =>request('salary'),
-        'employer_id' =>1,
-    ]);
-    return redirect('/jobs');
-});
-
-//Create job
-Route::get('/jobs/create', function () {
-    //$job = Jobs::find($id);
-    return view('jobs.create');
-});
-//Show job
-Route::get('/jobs/{job}', function (Jobs $job) {
-    return view('jobs.show', ['job' => $job]);
-});
-
-//Edit job
-Route::get('/jobs/{job}/edit', function (Jobs $job) {
-    return view('jobs.edit', ['job' => $job]);
-});
-//Update job
-Route::patch('/jobs/{job}', function (Jobs $job) {
-    //validate request
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required', 'min:5'],
-    ]);
-
-    //todo authorize request (on hold)
-    //update the job
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary'),
-    ]);
-    return redirect('/jobs/'.$job->id);
-});
-//Destroy job
-Route::delete('/jobs/{job}', function (Jobs $job) {
-    //todo authorize request (on hold)
-    $job->delete();
-    return redirect('/jobs');
-});
-
-
-//Contact
-Route::get('/contact', function () {
-    return view('contact');
-});
+/* we can also only define needed actions, or just exclude not needed actions
+Route::resource('jobs', JobsController::class,[
+    'except' => ['index', 'show']
+]);
+Route::resource('jobs', JobsController::class,[
+    'only' => ['edit', 'update', 'destroy']
+]);
+*/
 
 
