@@ -6,5 +6,8 @@
     <p>
         This job pays {{ $job['salary'] }}: per year.
     </p>
+    <div class="mt-5">
+        <a href="{{ url()->previous() }}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">Go Back</a>
+    </div>
 </x-layout>
 
