@@ -23,8 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         */
-
-        User::factory(10)->create();
+       //User::factory(10)->create();
 
         // Create 5 tags
         $tags = Tag::factory()->count(5)->create();

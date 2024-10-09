@@ -10,8 +10,10 @@
         <a href="{{ url()->previous() }}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">Go Back</a>
     </div>
 
+    @can('edit', $job)
     <p class="mt-6">
         <x-button href="/jobs/{{ $job->id }}/edit">Edit Job</x-button>
     </p>
+    @endcan
 </x-layout>
 
