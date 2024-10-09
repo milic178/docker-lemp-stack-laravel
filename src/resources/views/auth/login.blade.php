@@ -8,7 +8,13 @@
                     <x-form-field>
                         <x-form-label for="title">Email</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="email" id="email" type="email" placeholder="something@something.com" required></x-form-input>
+                            <x-form-input name="email"
+                                          id="email"
+                                          type="email"
+                                          placeholder="something@something.com"
+                                          :value="old('email')"
+                                          required>
+                            </x-form-input>
                             <x-form-error name="email"></x-form-error>
                         </div>
                     </x-form-field>
@@ -16,7 +22,8 @@
                     <x-form-field>
                         <x-form-label for="salary">Password</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="password" id="password" type=password placeholder="Minimum 8 characters" required></x-form-input>
+                            <x-form-input name="password" id="password" type=password placeholder="Minimum 8 characters"
+                                          required></x-form-input>
                             <x-form-error name="password"></x-form-error>
                         </div>
                     </x-form-field>

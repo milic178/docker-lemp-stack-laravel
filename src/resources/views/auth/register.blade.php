@@ -24,7 +24,7 @@
                     <x-form-field>
                         <x-form-label for="password_confirmation">Confirm Password</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="password_confirmation" id="password_confirmation" type=password_confirmation placeholder="Minimum 8 characters" required></x-form-input>
+                            <x-form-input name="password_confirmation" id="password_confirmation" type=password placeholder="Minimum 8 characters" required></x-form-input>
                             <x-form-error name="password_confirmation"></x-form-error>
                         </div>
                     </x-form-field>
