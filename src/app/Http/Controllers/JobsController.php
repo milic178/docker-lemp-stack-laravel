@@ -21,7 +21,6 @@ class JobsController extends Controller
     public function create()
     {
         return view('jobs.create');
-
     }
 
     public function show(Jobs $job)
@@ -37,11 +36,10 @@ class JobsController extends Controller
             'salary' => ['required', 'min:5'],
         ]);
 
-        //todo validation
         Jobs::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 1,
+            'employer_id' => Auth::user()->employer?->id,
         ]);
         return redirect('/jobs');
     }
