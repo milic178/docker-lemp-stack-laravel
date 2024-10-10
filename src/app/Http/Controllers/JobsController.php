@@ -45,7 +45,7 @@ class JobsController extends Controller
         ]);
 
         //todo use queue / event
-        Mail::to($job->employer->user)->send(
+        Mail::to($job->employer->user)->queue(
             new JobPosted($job)
         );
 

@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Gate;
 class JobsPolicy
 {
 
-    public function edit(User $user, Jobs $jobs){
-            return $jobs->employer->user->is($user);
+    public function edit(User $user, Jobs $jobs)
+    {
+        return $jobs->employer->user->is($user);
     }
 
     /**
